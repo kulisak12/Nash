@@ -50,6 +50,9 @@ bool Params::longFlag(std::string& flag, std::string& nextArg) { // nextArg is u
 // take the rest of this argument, or the next one
 std::string getValue(std::string& arg, std::string& nextArg, int valueStart, bool* nextArgUsed) {
 	if (arg.length() == valueStart) {
+		if (nextArg.length() == 0) {
+			throw std::runtime_error("nash: option requires an argument -- " + quote(arg.substr(valueStart - 1, 1)));
+		}
 		*nextArgUsed = true;
 		return nextArg;
 	}
