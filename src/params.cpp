@@ -1,5 +1,6 @@
 #include <iostream>
 #include "params.h"
+#include "utility.h"
 
 // * parsing of parameters
 
@@ -31,10 +32,6 @@ void Params::parse(int argc, char* argv[]) {
 			i++;
 		}
 	}
-}
-
-std::string quote(std::string text) {
-	return "'" + text + "'";
 }
 
 bool Params::longFlag(std::string& flag, std::string& nextArg) { // nextArg is unused, no long flag needs a value
