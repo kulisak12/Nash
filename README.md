@@ -10,4 +10,4 @@ Since Lemke-Howson cannot find all Nash equilibria, search by **support enumerat
 
 ## License
 
-&copy; 2020 David Klement, [Apache License 2.0](https://github.com/kulisak12/Nash/blob/master/LICENSE)
+&copy; 2021 David Klement, [Apache License 2.0](https://github.com/kulisak12/Nash/blob/master/LICENSE)
