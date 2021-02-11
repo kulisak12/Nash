@@ -4,6 +4,7 @@
 #include "utility.h"
 
 void Reader::open(std::string& fileName, std::string& sep) {
+	this->fileName = fileName;
 	this->sep = sep;
 
 	if (fileName != "") {
@@ -38,6 +39,7 @@ int Reader::nextSepPos(std::string& str, int start) {
 bool Reader::loadNextLine() {
 	lineSplits.clear();
 	nextIndex = 0;
+	lineNumber++;
 
 	std::string line;
 	if(!std::getline(std::cin, line)) {
@@ -93,4 +95,18 @@ double Reader::next() {
 	double entry = parseDouble(lineSplits[nextIndex]);
 	nextIndex++;
 	return entry;
+}
+
+// generate prefix in form of file:line
+// empty if reading from standard input
+std::string Reader::errorPrefix(bool includeLineNumber) {
+	if (fileName == "") {
+		return "";
+	}
+	else if (includeLineNumber) {
+		return fileName + ":" + std::to_string(lineNumber) + " ";
+	}
+	else {
+		return fileName + " ";
+	}
 }

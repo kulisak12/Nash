@@ -10,12 +10,15 @@ class Reader {
 	void close();
 	int nextLineLength();
 	double next();
+	std::string errorPrefix(bool includeLineNumber);
 
   private:
 	bool loadNextLine();
 	int nextSepPos(std::string& str, int begin);
 	std::string sep;
+	std::string fileName;
 	std::ifstream inputFile;
 	std::vector<std::string> lineSplits;
 	int nextIndex;
+	int lineNumber = 0;
 };
