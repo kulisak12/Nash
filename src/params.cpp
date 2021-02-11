@@ -34,12 +34,13 @@ void Params::parse(int argc, char* argv[]) {
 	}
 }
 
-bool Params::longFlag(std::string& flag, std::string& nextArg) { // nextArg is unused, no long flag needs a value
+bool Params::longFlag(std::string& flag, std::string& nextArg) {
+	// nextArg is unused, no long flag needs a value
 	if (flag == "--help") {
 		help = true;
 	}
 	else {
-		throw std::runtime_error("nash: unrecognized option " + quote(flag));
+		throw std::runtime_error("Unrecognized option " + quote(flag));
 	}
 	return false;
 }
@@ -48,7 +49,8 @@ bool Params::longFlag(std::string& flag, std::string& nextArg) { // nextArg is u
 std::string getValue(std::string& arg, std::string& nextArg, int valueStart, bool* nextArgUsed) {
 	if (arg.length() == valueStart) {
 		if (nextArg.length() == 0) {
-			throw std::runtime_error("nash: option requires an argument -- " + quote(arg.substr(valueStart - 1, 1)));
+			throw std::runtime_error("Option " +
+				quote(arg.substr(valueStart - 1, 1)) + " requires an argument");
 		}
 		*nextArgUsed = true;
 		return nextArg;
@@ -76,13 +78,13 @@ bool Params::shortFlags(std::string& flags, std::string& nextArg) {
 		else if (flag == 'n') {
 			std::string numStr = getValue(flags, nextArg, i + 1, &nextArgUsed);
 			if (numStr.find_first_not_of("0123456789") != std::string::npos) { // not an integer
-				throw std::runtime_error("nash: invalid number argument " + quote(numStr));
+				throw std::runtime_error("Invalid number argument " + quote(numStr));
 			}
 			num = std::stoi(numStr);
 			break;
 		}
 		else {
-			throw std::runtime_error("nash: invalid option -- " + quote(flags.substr(i, 1)));
+			throw std::runtime_error("Unrecognized option " +  quote(flags.substr(i, 1)));
 		}
 	}
 	return nextArgUsed;

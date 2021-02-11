@@ -14,6 +14,7 @@ class Reader {
 
   private:
 	bool loadNextLine();
+	double parseDouble(std::string& str);
 	int nextSepPos(std::string& str, int begin);
 	std::string sep;
 	std::string fileName;

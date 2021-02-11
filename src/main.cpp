@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 		params.parse(argc, argv);
 	}
 	catch (const std::exception& e) {
-		std::cerr << e.what() << std::endl;
+		std::cerr << "nash: " << e.what() << std::endl;
 		printUsage();
 		return 1;
 	}
@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 		assertDimensions(payoff1, payoff2);
 	}
 	catch (const std::exception& e) {
-		std::cerr << e.what() << std::endl;
+		std::cerr << "nash: " << e.what() << std::endl;
 		reader.close();
 		return 1;
 	}
@@ -50,10 +50,8 @@ void assertLineLength(int extraEntries, std::string errorPrefix) {
 		return;
 	}
 
-	throw std::runtime_error("nash: " + errorPrefix +
-		"wrong number of entries, expected " +
-		std::to_string(abs(extraEntries)) +
-		(extraEntries < 0 ? " more" : " less"));
+	throw std::runtime_error(errorPrefix +	"Wrong number of entries, expected " +
+		std::to_string(abs(extraEntries)) +	(extraEntries < 0 ? " more" : " less"));
 }
 
 // use data from reader to construct a matrix
@@ -77,13 +75,13 @@ Matrix loadMatrix(Reader& reader) {
 
 void assertDimensions(Matrix& m1, Matrix& m2) {
 	if (m1.getNumRows() == 0) {
-		throw std::runtime_error("nash: matrix 1 is empty");
+		throw std::runtime_error("Matrix 1 is empty");
 	}
 	if (m2.getNumRows() == 0) {
-		throw std::runtime_error("nash: matrix 2 is empty");
+		throw std::runtime_error("Matrix 2 is empty");
 	}
 	if (m1.getNumRows() != m2.getNumRows() ||
 		m1.getNumColumns() != m2.getNumColumns()) {
-		throw std::runtime_error("nash: unmatching matrix dimensions");
+		throw std::runtime_error("Unmatching matrix dimensions");
 	}
 }

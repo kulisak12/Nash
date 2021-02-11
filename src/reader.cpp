@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <cstring>
 #include "reader.h"
 #include "utility.h"
 
@@ -10,7 +11,7 @@ void Reader::open(std::string& fileName, std::string& sep) {
 	if (fileName != "") {
 		inputFile.open(fileName, std::ios::in);
 		if (!inputFile.is_open()) {
-			throw std::runtime_error("Error opening file");
+			throw std::runtime_error(errorPrefix(false) + std::strerror(errno));
 		}
 		// redirect file to standard input
 		std::cin.rdbuf(inputFile.rdbuf());
@@ -77,10 +78,10 @@ int Reader::nextLineLength() {
 	}
 }
 
-double parseDouble(std::string& str) {
+double Reader::parseDouble(std::string& str) {
     double d;
     if (!(std::istringstream(str) >> d >> std::ws).eof()) { // magic
-		throw std::runtime_error("nash: invalid number argument " + quote(str));
+		throw std::runtime_error(errorPrefix(true) + "Invalid number argument " + quote(str));
 	}
 	return d;
 }
@@ -104,9 +105,9 @@ std::string Reader::errorPrefix(bool includeLineNumber) {
 		return "";
 	}
 	else if (includeLineNumber) {
-		return fileName + ":" + std::to_string(lineNumber) + " ";
+		return fileName + ":" + std::to_string(lineNumber) + ": ";
 	}
 	else {
-		return fileName + " ";
+		return fileName + ": ";
 	}
 }
