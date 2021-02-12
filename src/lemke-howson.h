@@ -20,3 +20,4 @@ struct Equilibrium {
 
 void normalizeStrategy(std::vector<double>& vec);
 Equilibrium lemkeHowson(Matrix& payoff1, Matrix& payoff2, int startLabel);
+void printEquilibrium(Equilibrium& eq);

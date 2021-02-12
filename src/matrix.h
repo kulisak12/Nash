@@ -13,6 +13,9 @@ class Matrix {
 	std::vector<double> getRow(int row);
 	std::vector<double> getColumn(int col);
 
+	double extract(int row, int col);
+	void set(int row, int col, double val);
+
 	Matrix transpose();
 	double normalize();
 

@@ -50,6 +50,19 @@ std::vector<double> Matrix::getColumn(int col) {
 }
 
 
+// * direct access
+
+// get value and reset to 0
+double Matrix::extract(int row, int col) {
+	double val = m[row][col];
+	m[row][col] = 0;
+	return val;
+}
+
+void Matrix::set(int row, int col, double val) {
+	m[row][col] = val;
+}
+
 // * transformations
 
 Matrix Matrix::transpose() {

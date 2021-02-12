@@ -2,9 +2,12 @@
 #include "params.h"
 #include "reader.h"
 #include "matrix.h"
+#include "lemke-howson.h"
+#include "utility.h"
 
 Matrix loadMatrix(Reader& reader);
 void assertDimensions(Matrix& m1, Matrix& m2);
+void printEquilibrium(Equilibrium& eq);
 
 int main(int argc, char* argv[]) {
 	// parse parameters
@@ -40,6 +43,21 @@ int main(int argc, char* argv[]) {
 	payoff2 = payoff2.transpose();
 	payoff1.normalize();
 	payoff2.normalize();
+	
+	// find equilibria
+	if (params.all) {
+		// support enumeration
+		std::cerr << "nash: Not implemented yet" << std::endl;
+		return 1;
+	}
+	else {
+		// Lemke-Howson
+		int totalActions = payoff1.getNumRows() + payoff1.getNumColumns();
+		for (int i = 1; i <= totalActions; i++) {
+			Equilibrium eq = lemkeHowson(payoff1, payoff2, i);
+			printEquilibrium(eq);
+		}
+	}
 
 	return 0;
 }
@@ -84,4 +102,12 @@ void assertDimensions(Matrix& m1, Matrix& m2) {
 		m1.getNumColumns() != m2.getNumColumns()) {
 		throw std::runtime_error("Unmatching matrix dimensions");
 	}
+}
+
+void printEquilibrium(Equilibrium& eq) {
+	std::cout << "<";
+	printVector(eq.strategy1);
+	std::cout << ">, <";
+	printVector(eq.strategy2);
+	std::cout << ">" << std::endl;
 }
