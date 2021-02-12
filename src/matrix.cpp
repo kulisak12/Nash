@@ -1,5 +1,7 @@
 #include "matrix.h"
 
+// * row operations
+
 void Matrix::appendRow(std::vector<double>& row) {
 	if (numRows == 0) {
 		numColumns = row.size();
@@ -9,6 +11,23 @@ void Matrix::appendRow(std::vector<double>& row) {
 	m.push_back(row);
 }
 
+// multiply entire row by a number
+void Matrix::multiplyRow(int row, double coeff) {
+	for (int i = 0; i < numColumns; i++) {
+		m[row][i] *= coeff;
+	}
+}
+
+// add a multiple of one row to another
+void Matrix::addRows(int source, int dest, double coeff) {
+	for (int i = 0; i < numColumns; i++) {
+		m[dest][i] += m[source][i] * coeff;
+	}
+}
+
+
+// * getters
+
 int Matrix::getNumRows() {
 	return numRows;
 }
@@ -16,6 +35,22 @@ int Matrix::getNumRows() {
 int Matrix::getNumColumns() {
 	return numColumns;
 }
+
+std::vector<double> Matrix::getRow(int row) {
+	return m[row];
+}
+
+std::vector<double> Matrix::getColumn(int col) {
+	std::vector<double> result;
+	result.resize(numRows);
+	for (int i = 0; i < numRows; i++) {
+		result[i] = m[i][col];
+	}
+	return result;
+}
+
+
+// * transformations
 
 Matrix Matrix::transpose() {
     Matrix t;
