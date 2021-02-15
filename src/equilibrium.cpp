@@ -17,21 +17,31 @@ void normalizeStrategy(std::vector<double>& vec) {
 	}
 }
 
+// get a string representation of vector
 std::string formatVector(std::vector<double>& vec) {
-	const int precision = 3;
 	std::ostringstream result;
-
 	for (int i = 0; i < vec.size(); i++) {
-		result << round(vec[i], precision);
+		result << vec[i];
 		if (i < vec.size() - 1) {
 			result << ", ";
 		}
 	}
-
 	return result.str();
 }
 
 void printEquilibrium(Equilibrium& eq) {
 	std::cout << "x = (" << formatVector(eq.strategy1) <<
 		"), y = (" << formatVector(eq.strategy2) << ")" << std::endl;
+}
+
+// round all numbers in a vector
+void roundVector(std::vector<double>& vec, int places) {
+	for (int i = 0; i < vec.size(); i++) {
+		vec[i] = round(vec[i], places);
+	}
+}
+
+// check if equilibria are the same
+bool equilibriaMatch(Equilibrium& eq1, Equilibrium& eq2) {
+	return eq1.strategy1 == eq2.strategy1 && eq1.strategy2 == eq2.strategy2;
 }

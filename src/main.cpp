@@ -7,6 +7,9 @@
 
 Matrix loadMatrix(Reader& reader);
 void assertDimensions(Matrix& m1, Matrix& m2);
+void repeatLemkeHowson(Matrix& payoff1, Matrix& payoff2, int desiredNumEq);
+
+const int eqPrecision = 3;
 
 int main(int argc, char* argv[]) {
 	// parse parameters
@@ -50,12 +53,7 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 	else {
-		// Lemke-Howson
-		int totalActions = payoff1.getNumRows() + payoff1.getNumColumns();
-		for (int i = 1; i <= totalActions; i++) {
-			Equilibrium eq = lemkeHowson(payoff1, payoff2, i);
-			printEquilibrium(eq);
-		}
+		repeatLemkeHowson(payoff1, payoff2, params.num);
 	}
 
 	return 0;
@@ -101,4 +99,39 @@ void assertDimensions(Matrix& m1, Matrix& m2) {
 		m1.getNumColumns() != m2.getNumColumns()) {
 		throw std::runtime_error("Unmatching matrix dimensions");
 	}
+}
+
+// run Lemke-Howson multiple times with different start labels
+void repeatLemkeHowson(Matrix& payoff1, Matrix& payoff2, int desiredNumEq) {
+	int totalActions = payoff1.getNumRows() + payoff1.getNumColumns();
+	std::vector<Equilibrium> eqFound;
+
+	for (int label = 1; label <= totalActions; label++) {
+		// run Lemke-Howson
+		Equilibrium eq = lemkeHowson(payoff1, payoff2, label);
+		roundVector(eq.strategy1, eqPrecision);
+		roundVector(eq.strategy2, eqPrecision);
+
+		// compare to previously found equilibria
+		bool duplicate = false;
+		for (int j = 0; j < eqFound.size(); j++) {
+			if (equilibriaMatch(eq, eqFound[j])) {
+				duplicate = true;
+				break;
+			}
+		}
+		// new equilibrium
+		if (!duplicate) {
+			eqFound.push_back(eq);
+			printEquilibrium(eq);
+			// desired number of equilibria already found
+			if (eqFound.size() == desiredNumEq) {
+				return;
+			}
+		}
+	}
+
+	// not enough equilibria found
+	std::cerr << "nash: Found only " << eqFound.size() <<
+		" equilibri" << (eqFound.size() == 1 ? "um" : "a" ) << std::endl;
 }
