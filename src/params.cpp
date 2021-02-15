@@ -111,7 +111,7 @@ void printHelp() {
 		"\n" <<
 		"  -n NUM        Find up to NUM different equilibria. Use Lemke-Howson.\n" <<
 		"  -a            Find all equilibria. Use support enumeration.\n" <<
-		"  -s SEP        Specify separator used in FILE. Defaults to ' '.\n" <<
+		"  -s SEP        Specify separator used in FILE. Defaults to whitespace.\n" <<
 		"  -h, --help    Print this page.\n" <<
 		"\n" <<
 		"FILE should contain two M x N payoff matrices separated by an empty line.\n" <<
