@@ -1,5 +1,6 @@
 #pragma once
 
+#include "equilibrium.h"
 #include "matrix.h"
 
 class Pivoting {
@@ -13,11 +14,4 @@ class Pivoting {
 	int player;
 };
 
-struct Equilibrium {
-	std::vector<double> strategy1;
-	std::vector<double> strategy2;
-};
-
-void normalizeStrategy(std::vector<double>& vec);
 Equilibrium lemkeHowson(Matrix& payoff1, Matrix& payoff2, int startLabel);
-void printEquilibrium(Equilibrium& eq);

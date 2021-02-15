@@ -1,20 +1,7 @@
-#include "lemke-howson.h"
-#include "utility.h"
-
 #include <limits>
 
-// scale such that entries sum up to 1
-void normalizeStrategy(std::vector<double>& vec) {
-	double sum = 0;
-	for (int i = 0; i < vec.size(); i++) {
-		sum += vec[i];
-	}
-
-	double coeff = 1 / sum;
-	for (int i = 0; i < vec.size(); i++) {
-		vec[i] *= coeff;
-	}
-}
+#include "lemke-howson.h"
+#include "utility.h"
 
 Equilibrium lemkeHowson(Matrix& payoff1, Matrix& payoff2, int startLabel) {
 	Pivoting p1(payoff1, 1);

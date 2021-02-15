@@ -1,13 +1,12 @@
 #include <iostream>
+
+#include "lemke-howson.h"
+#include "matrix.h"
 #include "params.h"
 #include "reader.h"
-#include "matrix.h"
-#include "lemke-howson.h"
-#include "utility.h"
 
 Matrix loadMatrix(Reader& reader);
 void assertDimensions(Matrix& m1, Matrix& m2);
-void printEquilibrium(Equilibrium& eq);
 
 int main(int argc, char* argv[]) {
 	// parse parameters
@@ -102,12 +101,4 @@ void assertDimensions(Matrix& m1, Matrix& m2) {
 		m1.getNumColumns() != m2.getNumColumns()) {
 		throw std::runtime_error("Unmatching matrix dimensions");
 	}
-}
-
-void printEquilibrium(Equilibrium& eq) {
-	std::cout << "<";
-	printVector(eq.strategy1);
-	std::cout << ">, <";
-	printVector(eq.strategy2);
-	std::cout << ">" << std::endl;
 }

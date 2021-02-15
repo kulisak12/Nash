@@ -1,5 +1,4 @@
 #include <cmath>
-#include <iostream>
 #include <string>
 #include <vector>
 
@@ -22,16 +21,6 @@ int power(int base, int exp) {
 }
 
 double round(double x, int places) {
-	int multiple = power(10, 2);
+	int multiple = power(10, places);
 	return std::floor(x * multiple) / multiple;
-}
-
-void printVector(std::vector<double>& vec) {
-	const int precision = 2;
-	for (int i = 0; i < vec.size(); i++) {
-		std::cout << round(vec[i], precision);
-		if (i < vec.size() - 1) {
-			std::cout << ", ";
-		}
-	}
 }
