@@ -1,6 +1,7 @@
+#include <cstring>
 #include <iostream>
 #include <sstream>
-#include <cstring>
+
 #include "reader.h"
 #include "utility.h"
 
