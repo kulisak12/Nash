@@ -47,14 +47,7 @@ int main(int argc, char* argv[]) {
 	payoff2.normalize();
 	
 	// find equilibria
-	if (params.all) {
-		// support enumeration
-		std::cerr << "nash: Not implemented yet" << std::endl;
-		return 1;
-	}
-	else {
-		repeatLemkeHowson(payoff1, payoff2, params.num);
-	}
+	repeatLemkeHowson(payoff1, payoff2, params.num);
 
 	return 0;
 }

@@ -5,7 +5,6 @@
 class Params {
   public:
 	bool help = false;
-	bool all = false;
 	int num = 1;
 	std::string file;
 	std::string sep = " ";

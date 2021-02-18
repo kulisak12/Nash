@@ -65,10 +65,8 @@ bool Params::shortFlags(std::string& flags, std::string& nextArg) {
 	bool nextArgUsed = false;
 	for (int i = 1; i < flags.length(); i++) {
 		char flag = flags[i];
-		if (flag == 'a') {
-			all = true;
-		}
-		else if (flag == 'h') {
+		// boolean options
+		if (flag == 'h') {
 			help = true;
 		}
 		// options that need a value
@@ -109,8 +107,7 @@ void printHelp() {
 		"Example: nash -n 2 payoffs.txt\n" <<
 		"With no FILE, read standard input.\n" <<
 		"\n" <<
-		"  -n NUM        Find up to NUM different equilibria. Use Lemke-Howson.\n" <<
-		"  -a            Find all equilibria. Use support enumeration.\n" <<
+		"  -n NUM        Find up to NUM different equilibria.\n" <<
 		"  -s SEP        Specify separator used in FILE. Defaults to whitespace.\n" <<
 		"  -h, --help    Print this page.\n" <<
 		"\n" <<
