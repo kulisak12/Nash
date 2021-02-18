@@ -22,5 +22,5 @@ int power(int base, int exp) {
 
 double round(double x, int places) {
 	int multiple = power(10, places);
-	return std::floor(x * multiple) / multiple;
+	return std::round(x * multiple) / multiple;
 }
