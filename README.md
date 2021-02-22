@@ -6,7 +6,7 @@ A command line application which searches for Nash equilibria in bimatrix games.
 
 The main aim of this project is to implement the **Lemke-Howson** algorithm, which to this day stands as the best known algorithm for this problem.
 
-## Documentation:
+## Documentation
 
 - [User](https://raw.githubusercontent.com/kulisak12/Nash/master/documentation/user.pdf)
 - [Developer](https://raw.githubusercontent.com/kulisak12/Nash/master/documentation/dev.pdf)
