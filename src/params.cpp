@@ -80,6 +80,9 @@ bool Params::shortFlags(std::string& flags, std::string& nextArg) {
 				throw std::runtime_error("Invalid number argument " + quote(numStr));
 			}
 			num = std::stoi(numStr);
+			if (num == 0) {
+				throw std::runtime_error("Number of equilibria must be positive");
+			}
 			break;
 		}
 		else {
