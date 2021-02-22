@@ -10,13 +10,15 @@ Equilibrium lemkeHowson(Matrix& payoff1, Matrix& payoff2, int startLabel) {
 
 	// perform pivoting
 	int labelDropped = startLabel;
+	bool isFirstPivoting = (labelDropped > numActions1);
 	do {
-		if (labelDropped > numActions1) {
+		if (isFirstPivoting) {
 			labelDropped = p1.traverseEdge(labelDropped);
 		}
 		else {
 			labelDropped = p2.traverseEdge(labelDropped);
 		}
+		isFirstPivoting = !isFirstPivoting;
 	} while (labelDropped != startLabel);
 
 	// return answer
