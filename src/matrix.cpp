@@ -78,7 +78,7 @@ Matrix Matrix::transpose() {
 	return t;
 }
 
-// add a constant to all entries to make them nonnegative
+// add a constant to all entries to make them positive
 // return this constant
 double Matrix::normalize() {
 	// get minimum
@@ -91,12 +91,13 @@ double Matrix::normalize() {
 		}
 	}
 	
+	double shift = 1 - min; // all terms at least 1
 	// add to all
 	for (int i = 0; i < numRows; i++) {
 		for (int j = 0; j < numColumns; j++) {
-			m[i][j] -= min;
+			m[i][j] += shift;
 		}
 	}
 
-	return -min;
+	return shift;
 }
