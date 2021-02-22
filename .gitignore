@@ -2,3 +2,12 @@
 
 build/
 nash
+
+## Latex
+*.aux
+*.log
+*.out
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.toc
