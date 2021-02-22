@@ -3,3 +3,7 @@
 
 0	1
 -1	-10
+
+Players drive their cars towards each other. If they turn to avoid collision,
+they are called "chicken" and lose. However, if they collide, their outcome is
+even worse.

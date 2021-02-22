@@ -5,3 +5,5 @@
 1	0
 0	2
 4	3
+
+A game where player 1 has 3 actions and player 2 has 2 actions.

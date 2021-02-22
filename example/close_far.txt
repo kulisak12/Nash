@@ -17,3 +17,6 @@
 4	5	4	3	2	1	2	3
 3	4	5	4	3	2	1	2
 2	3	4	5	4	3	2	1
+
+Each players picks a number from 1 to 5. Player 1 wants their numbers to be
+close together, player 2 as far away as possible.

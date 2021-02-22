@@ -5,3 +5,6 @@
 0	1	-1
 -1	0	1
 1	-1	0
+
+A zero-sum game, when one players wins, the other loses. No pure equilibrium
+exists (an equilibrium where all actions have probabilities 0 or 1).

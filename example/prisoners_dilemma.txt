@@ -3,3 +3,8 @@
 
 -1	0
 -4	-3
+
+Players are prisoners. They can be silent or testify. If they are both silent,
+they only serve 1 year in prison. If they both testify, they have to serve 3
+years. If one stays silent and the second testifies (betrays), the traitor gets
+freedom while the betrayed has to serve 4 years.
